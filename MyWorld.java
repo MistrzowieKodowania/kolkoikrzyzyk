@@ -21,21 +21,21 @@ public class MyWorld extends World
             int mX=mouse.getX(), mY=mouse.getY();
 
      
-        if(Greenfoot.isKeyDown("o"))
-        {
-            Kolko kolko = new Kolko();
-            addObject(kolko, mX, mY);
+                if(Greenfoot.isKeyDown("o"))
+                {
+                    Kolko kolko = new Kolko();
+                    addObject(kolko, mX, mY);
             
-        }
-       else if(Greenfoot.isKeyDown("x"))
-        {
-            Krzyzyk krzyzyk = new Krzyzyk();
-            addObject(krzyzyk, mX, mY);;
-        }
+                }
+                else if(Greenfoot.isKeyDown("x"))
+                {
+                    Krzyzyk krzyzyk = new Krzyzyk();
+                    addObject(krzyzyk, mX, mY);
+                 }
         
    
     
-      }
+        }
     }
  }
 
