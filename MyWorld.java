@@ -7,13 +7,14 @@ public class MyWorld extends World
     boolean[][] o = new boolean [12][8]; 
     boolean[][] x = new boolean [12][8];
     int ktoTeraz;
+    int ileWolnychPol = 96;
     public MyWorld()
     {    
         super(600, 400, 1);
         ktoTeraz=Greenfoot.getRandomNumber(2);
-        JOptionPane.showMessageDialog(null, "Aby graÄ‡ kÃ³Å‚kiem wciskaj 'o' i klikaj, krzyÅ¼ykiem - 'x' i klikaj." + "\n" + "Gra dla dwÃ³ch graczy!\nMusisz ustawiÄ‡ piÄ™Ä‡ jednakowych znaczkÃ³w pionowo lub poziomo");
-        if (ktoTeraz==0) JOptionPane.showMessageDialog(null,"ZaczynajÄ… O");
-        else JOptionPane.showMessageDialog(null,"ZaczynajÄ… X");
+        JOptionPane.showMessageDialog(null, "Aby graæ kó³kiem wciskaj 'o' i klikaj, krzy¿ykiem - 'x' i klikaj." + "\n" + "Gra dla dwóch graczy!\nMusisz ustawiæ piêæ jednakowych znaczków pionowo lub poziomo");
+        if (ktoTeraz==0) JOptionPane.showMessageDialog(null,"Zaczynaj¹ O");
+        else JOptionPane.showMessageDialog(null,"Zaczynaj¹ X");
     }
     
     public boolean sprawdzPiatkeKolek(){
@@ -29,7 +30,12 @@ public class MyWorld extends World
       }  
       ktoTeraz=1;
       Greenfoot.delay(10);
-      JOptionPane.showMessageDialog(null,"Teraz X");
+      if(ileWolnychPol==0){
+        JOptionPane.showMessageDialog(null,"REMIS!!!");
+        Greenfoot.stop();
+        }else{
+        JOptionPane.showMessageDialog(null,"Teraz X");
+        }
       return false;
     }
     
@@ -46,7 +52,13 @@ public class MyWorld extends World
       }  
       ktoTeraz=0;
       Greenfoot.delay(10);
-      JOptionPane.showMessageDialog(null,"Teraz O");
+      if(ileWolnychPol==0){
+        JOptionPane.showMessageDialog(null,"REMIS!!!");
+        Greenfoot.stop();
+        }else{
+        JOptionPane.showMessageDialog(null,"Teraz O");
+        }
+      
       return false;
     }
     
@@ -63,28 +75,30 @@ public class MyWorld extends World
      
                 if(Greenfoot.isKeyDown("o")&&ktoTeraz==0)
                 {
-                    if(o[indexX][indexY]){JOptionPane.showMessageDialog(null, "Tu jest kÃ³Å‚ko ");}
-                    else if(x[indexX][indexY]){JOptionPane.showMessageDialog(null, "Tu jest krzyÅ¼yk ");}
+                    if(o[indexX][indexY]){JOptionPane.showMessageDialog(null, "Tu jest kó³ko ");}
+                    else if(x[indexX][indexY]){JOptionPane.showMessageDialog(null, "Tu jest krzy¿yk ");}
                     else{Kolko kolko = new Kolko();
                     addObject(kolko, nrX, nrY);
                     o[indexX][indexY]=true;
+                    ileWolnychPol--;
                       if(sprawdzPiatkeKolek()){
                        Greenfoot.delay(10);
-                       JOptionPane.showMessageDialog(null, "WygraÅ‚y O");
+                       JOptionPane.showMessageDialog(null, "Wygra³y O");
                        Greenfoot.stop();
                       }
                     }
                 }
                 else if(Greenfoot.isKeyDown("x")&&ktoTeraz==1)
                 {
-                    if(o[indexX][indexY]){JOptionPane.showMessageDialog(null, "Tu jest kÃ³Å‚ko ");}
-                    else if(x[indexX][indexY]){JOptionPane.showMessageDialog(null, "Tu jest krzyÅ¼yk ");}
+                    if(o[indexX][indexY]){JOptionPane.showMessageDialog(null, "Tu jest kó³ko ");}
+                    else if(x[indexX][indexY]){JOptionPane.showMessageDialog(null, "Tu jest krzy¿yk ");}
                     else{Krzyzyk krzyzyk = new Krzyzyk();
                     addObject(krzyzyk, nrX, nrY);
                     x[indexX][indexY]=true;
+                    ileWolnychPol--;
                       if(sprawdzPiatkeKrzyzykow()){
                        Greenfoot.delay(10);
-                       JOptionPane.showMessageDialog(null, "WygraÅ‚y X");
+                       JOptionPane.showMessageDialog(null, "Wygra³y X");
                        Greenfoot.stop();
                       }
                     }
@@ -95,4 +109,3 @@ public class MyWorld extends World
         }
     }
  }
-
